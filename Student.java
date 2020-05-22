@@ -8,7 +8,7 @@ public class Student {
 	private String lastName;
 	//private int id;
 	private int gradeYear;
-	private String courses = null;
+	private String courses = " ";
 	private String studentId;//unique student id
 	//private int balance;
 	private int tuitionBalance=0;
@@ -25,7 +25,7 @@ public class Student {
 		System.out.println("Enter student last name: ");
 		this.lastName = in.nextLine();
 		
-		System.out.println("1. Freshman\n2. Sophomore\n 3.Junior\n 4.Sophomore\nEnter the student grade level 1 ,2,3,or 4");
+		System.out.println("1. Freshman\n2. Sophomore\n3.Junior\n4.Sophomore\nEnter the student grade level 1 ,2, 3 or 4");
 		this.gradeYear = in.nextInt();
 		
 		setStudentId();
@@ -44,7 +44,7 @@ public class Student {
 	public void enroll() {
 	
 		do {
-		System.out.println("Enter course to enroll (Q to Quit): ");
+		System.out.print("Enter course to enroll (Q to Quit): ");
 		Scanner in = new Scanner(System.in);
 		String course = in.nextLine();
 		if(!course.equalsIgnoreCase("Q")) {
@@ -56,15 +56,34 @@ public class Student {
 			break;
 			}
 		}while(1!=0);
-		System.out.println("Enrolled in: "+ courses+"\n"+ "Tuition Balance: "+ tuitionBalance);
+	//	System.out.println("Enrolled in: "+ courses);
 		
 	}
 	
 	//View balance
+	public void viewBalance() {
+		System.out.println("Your balance is : $"+ tuitionBalance);
+	}
 	
 	//pay tuition
-	
+	public void payTuition() {
+		viewBalance();
+		System.out.print("Enter your payment: ");
+		Scanner in = new Scanner(System.in);
+		int payment = in.nextInt();
+		tuitionBalance = tuitionBalance - payment;
+		System.out.println("Thank you for your payment of $ "+payment);
+		viewBalance();
+	}
 	//show status
+	
+	public String toString() {
+		return "\nName: " +firstName + " "+lastName + 
+				"\nGrade Level: "+ gradeYear+
+				"\nStudent ID: "+studentId+
+				"\nCourses Enrolled:  "+courses +
+				"\nBalance: $"+tuitionBalance;
+	}
 	
 
 }
